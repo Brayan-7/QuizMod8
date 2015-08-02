@@ -1,0 +1,22 @@
+<html>
+Buscador de preguntas
+<form method="get" action="/quizes">
+<p><input name="search" value="Texto a buscar" type="text">
+<input value="Enviar" type="submit"></p>
+</form>
+<table>
+	<% var i; for (i=0; i < quizes.length; i++) { %>
+	<tr>
+	<td><a href="quizes/<%= quizes[i].id %>"><%= quizes[i].pregunta %></a></td>
+	<td><a href="quizes/<% quizes[i].id %>/edit"><button>Editar</button></a></td>
+	<td>
+		<form method="post" action="quizes/<%= quizes[i].id %>?_method=delete">
+			<button type="submit" onclick="return confirm('Borrar: <%= quizes[i].pregunta %>');">BORRAR</button>
+		</form>
+	</td>
+	</tr>
+	<% } %>
+</table><p>
+<a href="/quizes/new"><button type="button">Crear Pregunta</button></a>
+<a href="/quizes"><button type="button">volver</button></a>
+</html>
